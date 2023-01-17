@@ -1,4 +1,4 @@
-GET http://127.0.0.1:5353/users
+GET http://127.0.0.1:5353/users?orderBy=email&direction=-1
 
 ###
 
@@ -6,8 +6,9 @@ POST http://127.0.0.1:5353/users
 Content-Type: application/json
 
 {
-  "email": "test@test.fr",
+  "email": "d@test.fr",
   "firstname": "john",
   "lastname": "doe",
   "password": "password",
+  "repeated_password": "password"
 }

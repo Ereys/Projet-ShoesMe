@@ -37,18 +37,17 @@ export default async function userRoute(app: FastifyInstance) {
             return "Error: Model not conform";
         }
 
-        /* On encode le mdp */
-
-        var passwordHash = require('password-hash');
-
-        const user = {...newUser.data, 
-        password: passwordHash.generate(newUser.data.password)}
-
-
         /* On ajoute le user à la base de données */
-        const resultdb = await app.mongo.db?.collection("users").insertOne(user);
+
+        const resultdb = await app.mongo.db?.collection("users").insertOne({
+            email: newUser.data.email,
+            firstname: newUser.data.firstname,
+            lastname: newUser.data.lastname,
+            password: newUser.data.password,
+        });
 
         /* On renvoie l'user qui a été créee avec un code 201 */ 
+
         reply.code(201);
         return UserModel.parse(await app.mongo.db?.
             collection("users").
