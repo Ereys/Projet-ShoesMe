@@ -1,4 +1,4 @@
-GET http://127.0.0.1:5353/users?orderBy=email&direction=-1
+GET http://127.0.0.1:5353/users?orderBy=email&direction=-1&page=2&limit=2
 
 ###
 
@@ -11,4 +11,15 @@ Content-Type: application/json
   "lastname": "doe",
   "password": "password",
   "repeated_password": "password"
+}
+
+
+###
+
+POST http://127.0.0.1:5353/token
+Content-Type: application/json
+
+{
+  "email": "d@test.fr",
+  "password": "password1234"
 }

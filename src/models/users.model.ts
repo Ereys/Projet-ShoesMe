@@ -118,3 +118,51 @@ export type UserCollectionType = z.infer<typeof UserCollectionModel>
 export const  UserCollectionSchema = zodToJsonSchema(UserCollectionModel);
 
 
+/**
+ * Model d'une accreditation
+ */
+
+export const UserCredentialModel = z.object({
+    email: z.string().email(),
+    password: z.string().transform(val => createHmac('sha256', process.env.API_SECRET || 'secret').update(val).digest('hex')),
+});
+
+/**
+ *
+ * Type d'une accreditation
+ */
+
+
+export type UserCredentialType = z.infer<typeof UserCredentialModel>
+
+
+/**
+ * Schema d'une accreditation
+ */
+
+export const  UserCredentialSchema = zodToJsonSchema(UserCredentialModel);
+
+
+/**
+ * Model d'un token
+ */
+
+export const UserTokenModel = z.string();
+/**
+ *
+ * Type d'un token
+ */
+
+
+export type UserTokenType = z.infer<typeof UserTokenModel>
+
+
+/**
+ * Schema d'un token
+ */
+
+export const  UserTokenSchema = zodToJsonSchema(UserTokenModel);
+
+
+
+
